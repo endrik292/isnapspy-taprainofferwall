@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SnapSpy Username Checker</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F273ETBJZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9F273ETBJZ');
+    </script>
+
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '26208595972078096');
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=26208595972078096&ev=PageView&noscript=1"/>
+    </noscript>
+    <style>
+        /* Allgemeines Styling */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        /* Styling für den Header mit dem animierten Geist */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #444;
+            margin-left: 10px;
+        }
+
+        .ghost-img {
+            width: 30px;
+            animation: float 2s infinite alternate;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Zentrierte Eingabeleiste */
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            background-color: #f1f1f1;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        /* Option Buttons */
+        .option-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .option-list li {
+            background-color: transparent;
+            border: 2px solid #ffcc00;
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #444;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .option-list li:hover {
+            background-color: #ffcc00;
+            color: white;
+        }
+
+        .option-list small {
+            font-size: 13px;
+            color: #888;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Button */
+        .btn {
+            background-color: #ffcc00;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffb800;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Blurred Background */
+        #blur-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://i.ibb.co/F6sfxDq/IMG-4305-transformed-modified.png') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        /* Anpassung für mobile Geräte */
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .ghost-img {
+                width: 60px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+
+        /* Verify Button and Text Styling */
+        #verify-page {
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        #verify-text {
+            font-size: 16px;
+            color: black;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        #verify-button {
+            background-color: #ffcc00;
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        #verify-button:hover {
+            background-color: #ffb800;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="blur-background"></div>
+
+    <div class="container" id="main-page">
+        <div class="header">
+            <img src="https://i.ibb.co/2W0LXHZ/IMG-4301.png" class="ghost-img" alt="Snapchat Ghost">
+            <h1>SnapSpy</h1>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="snapchat-username" placeholder="Type your username">
+        </div>
+        
+        <ul class="option-list">
+            <li onclick="goToProcessPage('Reveal Location')">
+                Reveal Location
+                <small>Shows real time location of any user</small>
+            </li>
+            <li onclick="goToProcessPage('Reveal Best Friend List')">
+                Reveal Best Friend List
+                <small>Shows eight best friends of any user</small>
+            </li>
+            <li onclick="goToProcessPage('Reveal My Eyes Only')">
+                Reveal My Eyes Only
+                <small>Shows the secret images of any users that they saved</small>
+            </li>
+            <li onclick="goToProcessPage('Reveal Accounts Chats')">
+                Reveal Accounts Chats
+                <small>Reveals the last 10 chats of any user</small>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container hidden" id="process-page">
+        <img src="https://i.ibb.co/2W0LXHZ/IMG-4301.png" class="ghost-img" alt="Snapchat Ghost">
+        <h2 id="process-title">Processing...</h2>
+        <button class="btn" onclick="startProcess()">Start Process</button>
+    </div>
+
+    <div class="container hidden" id="status-page">
+        <img src="https://i.ibb.co/2W0LXHZ/IMG-4301.png" class="ghost-img" alt="Snapchat Ghost">
+        <h2 id="status-text">Connecting...</h2>
+    </div>
+
+    <div id="verify-page" class="hidden">
+        <p id="verify-text">Complete verification to reveal the info without alerting the user</p>
+        <button id="verify-button" onclick="handleVerifyClick()">Verify</button>
+    </div>
+
+    <script>
+        // Wechsel zur Process-Seite
+        function goToProcessPage(option) {
+            let username = document.getElementById("snapchat-username").value;
+            if (username === "") {
+                alert("Please enter a username!");
+                return;
+            }
+
+            document.getElementById("main-page").classList.add("hidden");
+            document.getElementById("process-page").classList.remove("hidden");
+
+            document.getElementById("process-title").innerText = option;
+        }
+
+        // Prozess starten und zur Status-Seite wechseln
+        function startProcess() {
+            document.getElementById("process-page").classList.add("hidden");
+            document.getElementById("status-page").classList.remove("hidden");
+
+            // Statusänderungen in 2.5-Sekunden-Intervallen
+            setTimeout(() => {
+                document.getElementById("status-text").innerText = "User Found! Connecting...";
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById("status-text").innerText = "Bypassing 2FA Checks...";
+            }, 5000);
+
+            setTimeout(() => {
+                document.getElementById("status-text").innerText = "Success! Loading...";
+            }, 7500);
+
+            // Nach dem letzten Schritt zur Verify-Seite wechseln
+            setTimeout(() => {
+                document.getElementById("status-page").classList.add("hidden");
+                document.getElementById("verify-page").classList.remove("hidden");
+            }, 10000);
+        }
+
+        // Meta Pixel Klick-Event tracken und im selben Tab weiterleiten
+        function handleVerifyClick() {
+            // Trackt den Klick als offizielles Meta-Standard-Event (Lead)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
+            
+            // Weiterleitung im selben Tab zur gewünschten URL
+            window.location.href = "https://rainawards.com/ow/6a0611ea66edeac0a11376b6";
+        }
+    </script>
+
+</body>
+</html>
